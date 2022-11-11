@@ -31,9 +31,8 @@ const Footer = () => {
             </div> 
             <div>
                 <span className="footer-title">IMPORTANT LINK</span>
-                <Link className="link link-hover">Home</Link>
-                <Link className="link link-hover">All Services</Link>
-                <Link className="link link-hover">Blog</Link>
+                <Link to='/' className="link link-hover">Home</Link>
+                <Link to='/blog' className="link link-hover">Blog</Link>
             </div>
             <div>
                 <span className="footer-title">Social</span>

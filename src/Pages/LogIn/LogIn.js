@@ -1,13 +1,17 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
+import useTitle from '../../hooks/useTitle';
 
 
 const LogIn = () => {
+    useTitle('Log In')
     const [error, setError] = useState('');
+    const location = useLocation();
     const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
     const {
         signIn,
         googleProviderLogIn,
@@ -21,6 +25,27 @@ const LogIn = () => {
                 const user = result.user;
                 console.log(user);
                 navigate('/');
+                const currentUser = {
+                    email: user.email
+                }
+
+                console.log(currentUser);
+
+                // get jwt token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        // local storage is the easiest but not the best place to store jwt token
+                        localStorage.setItem('review-token', data.token);
+                        navigate(from, { replace: true })
+                    });
             })
             .catch(error => console.error(error))
     }
@@ -45,6 +70,27 @@ const LogIn = () => {
                 form.reset();
                 setError('');
                 navigate('/');
+                const currentUser = {
+                    email: user.email
+                }
+
+                console.log(currentUser);
+
+                // get jwt token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        // local storage is the easiest but not the best place to store jwt token
+                        localStorage.setItem('review-token', data.token);
+                        // navigate(from, { replace: true });
+                    });
             })
             .catch(error => setError(error.message))
     }

@@ -8,8 +8,8 @@ const Header = () => {
         user?.uid ?
             <>
                 <li><Link to='/'>Home</Link></li>
-                <li><Link to='/add-service'>My Reviews</Link></li>
-                <li><Link to='/my-reviews'>Add Service</Link></li>
+                <li><Link to='/my-reviews'>My Reviews</Link></li>
+                <li><Link to='/add-services'>Add Service</Link></li>
                 <li><Link to='/blog'>Blog</Link></li>
             </>
             :
@@ -25,7 +25,7 @@ const Header = () => {
 
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 shadow-md">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -65,7 +65,9 @@ const Header = () => {
                         <>
                             <div className="flex items-center">
                                 <h3 className=" mr-3">
-                                    {user?.displayName?.slice(0, 10) + '...'}
+                                    {
+                                        user?.displayName
+                                    }
                                 </h3>
                                 <button onClick={logOut} className="btn btn-primary">Sign Out</button>
                             </div>

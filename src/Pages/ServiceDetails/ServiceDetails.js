@@ -2,8 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
+import useTitle from '../../hooks/useTitle';
 
 const ServiceDetails = () => {
+    useTitle('Service Details')
     // const [review, setReview] = useState([])
     const [displayReviews, setDisplayReviews] = useState([]);
     const { user } = useContext(AuthContext)
@@ -20,6 +24,7 @@ const ServiceDetails = () => {
         event.preventDefault();
         const form = event.target;
         const email = user?.email;
+        const photoURL = user?.photoURL;
         const rating = form.rating.value;
         const reviews = form.reviews.value;
         const IsoDate = new Date().toISOString()
@@ -30,6 +35,7 @@ const ServiceDetails = () => {
             rating,
             reviews,
             IsoDate,
+            photoURL
         }
         console.log(review);
         fetch('http://localhost:5000/review', {
@@ -46,14 +52,14 @@ const ServiceDetails = () => {
             })
             .catch(error => console.error(error))
 
-        // event.target.reset();
+        event.target.reset();
         console.log(review);
         fetch(`http://localhost:5000/review/${_id}`)
             .then(res => res.json())
             .then(data => setDisplayReviews(data))
     }
     
-
+//http://localhost:5000
 
     useEffect(() => {
         fetch(`http://localhost:5000/review/${_id}`)
@@ -80,34 +86,10 @@ const ServiceDetails = () => {
     
     return (
         <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 mb-0">
-                <div className="mx-5">
-                    <img className='shadow-lg h-4/6	w-full' src={thumbnailImg} alt="" srcSet="" />
-                </div>
-                <div className="">
-                    <h2 className="text-3xl mt-3 font-semibold">{serviceName}</h2>
-                    <h3 className="text-xl mt-3 text-red-500">৳ {servicePrice}</h3>
-                    <button className="btn mt-3 btn-success">Buy Now</button>
-                    <p className=' mt-3'>{description}</p>
-                </div>
-            </div>
-            <div className="p-4">
-                <h2 className="text-xl">Ratings & Reviews of Star {serviceName}</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2">
-                    <div className="">
-                        {
-                            displayReviews.map(displayReview =>
-                                <>
-                                    <p>by: {displayReview.email}</p>
-                                    <h2 className="text-2xl text-yellow-500 font-bold flex">{displayReview.rating} <FaStar /></h2>
-                                    <p className='text-xl'>{displayReview.reviews}</p>
-                                    {/* <p>{displayReview.IsoDate.substring(0, 10)}</p> */}
-
-                                    {/* {updateDelete} */}
-                                </>
-                            )
-                        }
-                    </div>
+            <h2 className="text-2xl text-center my-6">Our Service Details</h2>
+            <div className="flex flex-col-reverse sm:flex-row mb-0">
+                <div className="my-6 mx-3 w-2/6">
+                    <h2 className="text-xl ">Ratings & Reviews of Star {serviceName}</h2>
                     <div className="">
                         {user?.uid ?
                             <>
@@ -134,6 +116,52 @@ const ServiceDetails = () => {
                             <Link to='/login' className='text-2xl'>Please Sign In /Sign Up And <button className='btn btn-primary'>Add Comment</button></Link>
                         }
                     </div>
+                    {
+                        displayReviews.map(displayReview =>
+                            <>
+                                <div className="card bg-base-100 m-4 shadow-xl flex">
+
+                                    <div className="card-body grid auto-cols-auto	">
+                                        <img className='w-2/6' src={displayReview?.photoURL} alt="" srcSet="" />
+                                        <div>
+                                            <h2 className="card-title">{displayReview.email}</h2>
+                                            <h2 className="text-2xl text-yellow-500 font-bold flex">{displayReview.rating} <FaStar /></h2>
+                                            <p className='text-xl'>{displayReview.reviews}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* <p>by: {displayReview.email}</p>
+                                    <h2 className="text-2xl text-yellow-500 font-bold flex">{displayReview.rating} <FaStar /></h2>
+                                    <p className='text-xl'>{displayReview.reviews}</p> */}
+                                {/* <p>{displayReview.IsoDate.substring(0, 10)}</p> */}
+
+                                {/* {updateDelete} */}
+                            </>
+                        )
+                    }
+
+                </div>
+                <div className="mx-5 w-full  sm:w-4/6">
+                    <div className="shadow-2xl p-4 rounded-lg">
+                        <PhotoProvider>
+                            <PhotoView src={thumbnailImg} >
+                                <img className='w-full' src={thumbnailImg} alt="" srcSet="" />
+                            </PhotoView>
+                        </PhotoProvider>
+                        <h2 className="text-3xl mt-3 font-semibold">{serviceName}</h2>
+                        <h3 className="text-xl mt-3 text-red-500">৳ {servicePrice}</h3>
+                        <button className="btn mt-3 btn-success">Buy Now</button>
+                        <p className=' mt-3'>{description}</p>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div className="p-4">
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2">
+                    
+                    
                 </div>
             </div>
         </div>

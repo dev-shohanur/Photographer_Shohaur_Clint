@@ -1,11 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../components/Main/Main";
+import UpdateReview from "../components/MyReviews/UpdateReview/UpdateReview";
 import AddServices from "../Pages/AddServices/AddServices";
+import Blog from "../Pages/Blog/Blog";
 import Home from "../Pages/Home/Home";
 import LogIn from "../Pages/LogIn/LogIn";
 import MyReview from "../Pages/MyReview/MyReview";
+import NotFund404 from "../Pages/NotFound404/NotFount404";
 import Registration from "../Pages/Registration/Registration";
 import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
+import PrivetRoute from "./PrivetRoute";
 
 const router = createBrowserRouter([
     {
@@ -19,11 +23,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/add-services',
-                element: <AddServices></AddServices>
+                element: <PrivetRoute><AddServices></AddServices></PrivetRoute>
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
                 path: '/my-reviews',
-                element: <MyReview></MyReview>
+                element: <PrivetRoute><MyReview></MyReview></PrivetRoute>
             },
             {
                 path: '/service/:id',
@@ -35,8 +43,17 @@ const router = createBrowserRouter([
                 element: <Registration></Registration>
             },
             {
+                path: '/update-review/:id',
+                element: <PrivetRoute><UpdateReview></UpdateReview></PrivetRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/reviews/${params.id}`)
+            },
+            {
                 path: '/login',
                 element: <LogIn></LogIn>
+            },
+            {
+                path: '*',
+                element: <NotFund404></NotFund404>
             }
         ]
     }
