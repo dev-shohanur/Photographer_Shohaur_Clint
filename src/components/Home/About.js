@@ -5,8 +5,9 @@ import 'react-photo-view/dist/react-photo-view.css';
 const About = () => {
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 my-6 bg-indigo-100'>
-            
+
             <div className="mx-6">
+                
                 <PhotoProvider>
                     <PhotoView src="https://scontent.fdac110-1.fna.fbcdn.net/v/t39.30808-6/279232283_121505380508263_3392659397521163168_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=LSYYwcnqVCwAX9ADLRM&_nc_ht=scontent.fdac110-1.fna&oh=00_AfANYQ8NEYkEvbl5qDJDgBBMaW3BZfsLg6FpZAXP_RMgKQ&oe=6374072C" >
                         <img className='
