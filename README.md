@@ -11,10 +11,10 @@ Hear are some of the  Feature of This Website<br/>
   => Face Data From MongoDB<br/>
 
 The packages used here are:<br/>
-   => Tailwind CSS<br/>
-   => Tailwind CSS Components DaisyUI<br/>
-   => React<br/>
-   => react-router-dom<br/>
-   => react-photo-view<br/>
-   => react-icons<br/>
-   => firebase<br/>
+   =>> Tailwind CSS<br/>
+   =>> Tailwind CSS Components DaisyUI<br/>
+   =>> React<br/>
+   =>> react-router-dom<br/>
+   =>> react-photo-view<br/>
+   =>> react-icons<br/>
+   =>> firebase<br/>
