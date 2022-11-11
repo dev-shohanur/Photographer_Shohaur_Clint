@@ -16,8 +16,9 @@ const Footer = () => {
                 </p>
                 <p className='flex items-center text-lg'>
                     <FaEnvelope className='mr-2' />
+                    
                     <span className="hover:text-red-500 cursor-pointer">
-                        photographer@shohanur.com
+                        photographer@shohanur.com 
                     </span>
                 </p>
                 <p className='flex text-lg'>
