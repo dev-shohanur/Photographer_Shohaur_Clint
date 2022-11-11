@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import useTitle from '../../../hooks/useTitle';
 
 const UpdateReview = () => {
     useTitle('Update Review')
+    const navigate = useNavigate();
     const allReview = useLoaderData();
     const [displayReview, setDisplayReview] = useState(allReview);
     const handelUpdateReview = (event) => {
         event.preventDefault();
         const form = event.target;
-        const rating = form.rating.value;
+        // const rating = form.rating.value;
         const reviews = form.reviews.value;
 
         const review = {
-            rating,
             reviews,
         }
         console.log(review);
         fetch(`http://localhost:5000/reviews/${allReview?._id}`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
@@ -26,10 +26,11 @@ const UpdateReview = () => {
         })
             .then(res => res.json())
             .then(data => {
+                setDisplayReview(data)
                 if (data.modifiedCount > 0) {
                     alert('App Updated Successfully')
                 }
-                // setDisplayReview(data)
+                navigate('/my-reviews')
             })
             .catch(error => console.error(error))
 
@@ -37,8 +38,7 @@ const UpdateReview = () => {
     }
     console.log(allReview);
     return (
-        <div className="">
-            <h2>h2 - {allReview.length}</h2>
+        <div className="bg-white shadow-lg mx-4 my-6 rounded-lg">
             <form onSubmit={handelUpdateReview} className="card-body">
                 {/* {inputEmail} */}
                 <div className="form-control">

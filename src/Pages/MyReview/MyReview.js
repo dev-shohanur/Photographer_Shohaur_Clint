@@ -71,35 +71,43 @@ const MyReview = () => {
     return (
         <div>
             <h2 className='text-4xl text-center font-bold my-4'>My Reviews {reviews.length}</h2>
-            {
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2">
+                {
                 reviews.map(review => 
-                    <div className="card bg-base-100 m-4 shadow-xl flex">
+                        <div className="card bg-base-100 m-4 shadow-xl flex">
 
-                        <div className="card-body grid auto-cols-auto	">
-                            <img className='' src={review?.photoURL} alt="" srcSet="" />
-                            <div>
-                                <h2 className="card-title">{review.email}</h2>
-                                <h2 className="text-2xl text-yellow-500 font-bold flex">{review.rating} <FaStar /></h2>
-                                <p className='text-xl'>{review.reviews}</p>
-                            </div>
-                            <button onClick={() => handelDeleteReview(review)} className='text-xl'><FaTrash className='text-orange-600'/></button>
-                            <Link to={`/update-review/${review._id}`}>
-                                <button className="btn btn-warning mr-2">Update</button>
-                            </Link>
-                            
-                            <input type="checkbox" id="my-modal" className="modal-toggle" />
-                            <div className="modal">
-                                <div className="modal-box">
-                                    {/* <UpdateReview key={review._id} review={review}></UpdateReview> */}
-                                    
-                                    <div className="modal-action">
-                                        <label htmlFor="my-modal" className="btn">Yay!</label>
+                            <div className="card-body grid auto-cols-auto	">
+                                <img className='mask mask-circle' src={review?.photoURL} alt="" srcSet="" />
+                                <div>
+                                    <h2 className="card-title">{review.email}</h2>
+                                    <h2 className="text-2xl text-yellow-500 font-bold flex">{review.rating} <FaStar /></h2>
+                                    <p className='text-xl'>{review.reviews}</p>
+                                </div>
+                                <div className="flex">
+                                    <button onClick={() => handelDeleteReview(review)} className="text-2xl  mr-2">
+                                        <FaTrash className='text-orange-600' />
+                                    </button>
+                                    <Link to={`/update-review/${review._id}`}>
+                                        <button className="text-2xl  mr-2"><FaEdit /></button>
+                                    </Link>
+                                </div>
+
+                                <input type="checkbox" id="my-modal" className="modal-toggle" />
+                                <div className="modal">
+                                    <div className="modal-box">
+                                        {/* <UpdateReview key={review._id} review={review}></UpdateReview> */}
+
+                                        <div className="modal-action">
+                                            <label htmlFor="my-modal" className="btn">Yay!</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>)
+                )
             }
+            </div>
         </div>
     );
 };
