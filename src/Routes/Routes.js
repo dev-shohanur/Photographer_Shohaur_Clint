@@ -19,7 +19,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/service')
+                loader: () => fetch('https://photographer-shohanur-server-dvsrshohan.vercel.app/service')
             },
             {
                 path: '/add-services',
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
             {
                 path: '/service/:id',
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`)
+                loader: ({ params }) => fetch(`https://photographer-shohanur-server-dvsrshohan.vercel.app/service/${params.id}`)
             },
             {
                 path: '/registration',
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
             {
                 path: '/update-review/:id',
                 element: <PrivetRoute><UpdateReview></UpdateReview></PrivetRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/reviews/${params.id}`)
+                loader: ({ params }) => fetch(`https://photographer-shohanur-server-dvsrshohan.vercel.app/reviews/${params.id}`)
             },
             {
                 path: '/login',

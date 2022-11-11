@@ -19,7 +19,7 @@ const AddServices = () => {
             description
         }
         console.log(service);
-        fetch('http://localhost:5000/service', {
+        fetch('https://photographer-shohanur-server-dvsrshohan.vercel.app/service', {
             method: 'post',
             headers: {
                 'content-type': 'application/json'

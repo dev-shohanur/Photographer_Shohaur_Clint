@@ -17,7 +17,7 @@ const UpdateReview = () => {
             reviews,
         }
         console.log(review);
-        fetch(`http://localhost:5000/reviews/${allReview?._id}`, {
+        fetch(`https://photographer-shohanur-server-dvsrshohan.vercel.app/reviews/${allReview?._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

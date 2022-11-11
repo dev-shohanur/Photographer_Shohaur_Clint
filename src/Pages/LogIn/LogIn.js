@@ -32,7 +32,7 @@ const LogIn = () => {
                 console.log(currentUser);
 
                 // get jwt token
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://photographer-shohanur-server-dvsrshohan.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -77,7 +77,7 @@ const LogIn = () => {
                 console.log(currentUser);
 
                 // get jwt token
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://photographer-shohanur-server-dvsrshohan.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

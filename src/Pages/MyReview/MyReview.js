@@ -10,7 +10,7 @@ const MyReview = () => {
     const [reviews, setReviews] = useState([])
     useTitle('My Reviews')
     useEffect(() => {
-        fetch(`http://localhost:5000/review?email=${user?.email}`, {
+        fetch(`https://photographer-shohanur-server-dvsrshohan.vercel.app/review?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('review-token')}`
             }
@@ -28,7 +28,7 @@ const MyReview = () => {
     const handelDeleteReview = review => {
         const agree = window.confirm(`Are You Sure You Want to Delete}`);
         if (agree) {
-            fetch(`http://localhost:5000/review/${review._id}`, {
+            fetch(`https://photographer-shohanur-server-dvsrshohan.vercel.app/review/${review._id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -51,7 +51,7 @@ const MyReview = () => {
     //         rating,
     //         reviews,
     //     }
-    //     fetch(`http://localhost:5000/review/${reviewId}`, {
+    //     fetch(`https://photographer-shohanur-server-dvsrshohan.vercel.app/review/${reviewId}`, {
     //         method: 'PUT',
     //         headers: {
     //             'content-type': 'application/json'

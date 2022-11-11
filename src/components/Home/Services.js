@@ -9,7 +9,7 @@ const Services = () => {
     const [services, setServices] = useState(service)
 
     const handleShowAllServices = () => {
-        fetch('http://localhost:5000/services')
+        fetch('https://photographer-shohanur-server-dvsrshohan.vercel.app/services')
             .then(res => res.json())
             .then(data => setServices(data))
     }

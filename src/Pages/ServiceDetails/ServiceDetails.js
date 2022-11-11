@@ -38,7 +38,7 @@ const ServiceDetails = () => {
             photoURL
         }
         console.log(review);
-        fetch('http://localhost:5000/review', {
+        fetch('https://photographer-shohanur-server-dvsrshohan.vercel.app/review', {
             method: 'post',
             headers: {
                 'content-type': 'application/json'
@@ -54,15 +54,15 @@ const ServiceDetails = () => {
 
         event.target.reset();
         console.log(review);
-        fetch(`http://localhost:5000/review/${_id}`)
+        fetch(`https://photographer-shohanur-server-dvsrshohan.vercel.app/review/${_id}`)
             .then(res => res.json())
             .then(data => setDisplayReviews(data))
     }
     
-//http://localhost:5000
+//https://photographer-shohanur-server-dvsrshohan.vercel.app/
 
     useEffect(() => {
-        fetch(`http://localhost:5000/review/${_id}`)
+        fetch(`https://photographer-shohanur-server-dvsrshohan.vercel.app/review/${_id}`)
             .then(res => res.json())
             .then(data => setDisplayReviews(data))
     }, [])
